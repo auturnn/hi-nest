@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  Req,
+  Res,
 } from '@nestjs/common';
 import { CreateMovieDTO } from './dto/create-movie.dto';
 import { UpdateMovieDTO } from './dto/update-movie.dto';
@@ -19,10 +21,18 @@ import { MoviesService } from './movies.service';
 @Controller('movies')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
+
   @Get()
   getAllMovies(): Movie[] {
     return this.moviesService.getAllMovies();
   }
+
+  //@Req(), @Res를 이용하여 express를 직접적으로 이용할 수 있다.
+  // @Get()
+  // getMovies(@Req() req, @Res() res): Movie[] {
+  //   res.json();
+  //   return this.moviesService.getAllMovies();
+  // }
 
   //   @Get('search')
   //   search(@Query('year') year: string) {
